@@ -17,7 +17,7 @@ $conf->set('sasl.username', $_ENV["CLOUD_KAFKA_SASL_USERNAME"]);
 $conf->set('sasl.password', $_ENV["CLOUD_KAFKA_SASL_PASSWORD"]);
 
 // Topic name
-$topicName = 'topic_php';
+$topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 
 // Message to be sent
 $message = [

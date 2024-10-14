@@ -8,9 +8,6 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
-// Topic name
-$topicName = 'topic_php';
-
 //Kafka Config
 $conf = new RdKafka\Conf();
 $conf->set('bootstrap.servers', $_ENV["CLOUD_KAFKA_BROKER"]);
@@ -22,6 +19,9 @@ $conf->set('sasl.password', $_ENV["CLOUD_KAFKA_SASL_PASSWORD"]);
 
 // Consume from the earliest available offset if no committed offset exists
 $conf->set('auto.offset.reset', 'earliest'); 
+
+// Topic name
+$topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 
 // Set a rebalance callback to log partition assignments (optional)
 $conf->setRebalanceCb(function (RdKafka\KafkaConsumer $kafka, $err, array $partitions = null) {
