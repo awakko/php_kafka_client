@@ -11,7 +11,8 @@ $dotenv->load();
 //Kafka Config
 $conf = new RdKafka\Conf();
 $conf->set('bootstrap.servers', $_ENV["CLOUD_KAFKA_BROKER"]);
-$conf->set('group.id', 'php_group');
+$conf->set('group.id', $_ENV["CLOUD_KAFKA_GROUP"]);
+
 $conf->set('security.protocol', 'SASL_SSL');
 $conf->set('sasl.mechanisms', 'PLAIN');
 $conf->set('sasl.username', $_ENV["CLOUD_KAFKA_SASL_USERNAME"]);
@@ -59,7 +60,6 @@ while (true) {
             echo "Timed out\n";
             break;
         default:
-            // Mungkin di sini terjadi error 'not implemented'
             error_log("Kafka error: " . $message->errstr() . " (Error code: " . $message->err . ")");
             break;
     }

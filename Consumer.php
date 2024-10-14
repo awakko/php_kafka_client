@@ -7,29 +7,19 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$environment = 'DEV';
-$user = 'USRDEV1';
-$topicName = 'usrDev1_topic';
-$groupId = 'usrDev1_group';
-
-$brokers = $_ENV[$environment . "_KAFKA_BROKER"];
-$sslCa = $_ENV[$environment . "_" . $user . "_KAFKA_SSL_CA"];
-$sslPass = $_ENV[$environment . "_" . $user . "_KAFKA_SSL_PASS"];
-$saslUser = $_ENV[$environment . "_" . $user . "_KAFKA_SASL_USERNAME"];
-$saslPass = $_ENV[$environment . "_" . $user . "_KAFKA_SASL_PASSWORD"];
+$topicName = $_ENV["KAFKA_TOPIC"];
+$groupId = $_ENV["KAFKA_GROUP"];
 
 $conf = new RdKafka\Conf();
-$conf->set('bootstrap.servers', $brokers);
-$conf->set('group.id', $groupId);
-
+$conf->set('bootstrap.servers', $_ENV["KAFKA_BROKER"]);
+$conf->set('group.id', $_ENV["KAFKA_GROUP"]);
 //Set SSL Config
 $conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', $sslCa);
-
+$conf->set('ssl.ca.location', $_ENV["KAFKA_SSL_CA"]);
 // Set SASL Config
 $conf->set('sasl.mechanisms', 'PLAIN');
-$conf->set('sasl.username', $saslUser);
-$conf->set('sasl.password', $saslPass);
+$conf->set('sasl.username', $_ENV["KAFKA_SASL_USERNAME"]);
+$conf->set('sasl.password', $_ENV["KAFKA_SASL_PASSWORD"]);
 
 // Set a rebalance callback to log partition assignments (optional)
 $conf->setRebalanceCb(function (RdKafka\KafkaConsumer $kafka, $err, array $partitions = null) {

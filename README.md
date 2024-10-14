@@ -25,7 +25,7 @@ Being thought about
 
 
     ## if you don't have composer
-    - you have to change the required configuration directly from the <b>cloud producer.php</b> and <b>cloud_consumer.php</b> source code
+    - you have to change the required configuration directly from the <b>cloud_producer.php</b> and <b>cloud_consumer.php</b> source code
     
     <b>example : </b>
     $conf->set('bootstrap.servers', $_ENV["CLOUD_KAFKA_BROKER"])

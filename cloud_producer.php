@@ -22,9 +22,9 @@ $topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 // Message to be sent
 $message = [
     'driver_id' => 1,
-    'driver_name' => 'azmi',
-    'latitude' => 'asas',
-    'longitude' => 'asaasas',
+    'driver_name' => 'Jony',
+    'latitude' => '-6.200000',
+    'longitude' => '106.816666',
 ];
 
 // Convert the array into a JSON string

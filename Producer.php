@@ -7,28 +7,19 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$environment = 'DEV';
-$user = 'USRDEV1';
-$topicName = 'usrDev1_topic'; //Change topic name to produce
 
-$brokers = $_ENV[$environment . "_KAFKA_BROKER"];
-$sslCa = $_ENV[$environment . "_" . $user . "_KAFKA_SSL_CA"];
-$sslPass = $_ENV[$environment . "_" . $user . "_KAFKA_SSL_PASS"];
-$saslUser = $_ENV[$environment . "_" . $user . "_KAFKA_SASL_USERNAME"];
-$saslPass = $_ENV[$environment . "_" . $user . "_KAFKA_SASL_PASSWORD"];
+$topicName = $_ENV["KAFKA_TOPIC"]; //Change topic name to produc
 
 //Config
 $conf = new RdKafka\Conf();
-
+$conf->set('bootstrap.servers', $_ENV["KAFKA_BROKER"]);
 // Set SSL Config
-$conf->set('bootstrap.servers', $brokers);
 $conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', $sslCa);
-
+$conf->set('ssl.ca.location', $_ENV["KAFKA_SSL_CA"]);
 // Set SASL Config
 $conf->set('sasl.mechanisms', 'PLAIN');
-$conf->set('sasl.username', $saslUser);
-$conf->set('sasl.password', $saslPass);
+$conf->set('sasl.username', $_ENV["KAFKA_SASL_USERNAME"]);
+$conf->set('sasl.password', $_ENV["KAFKA_SASL_PASSWORD"]);
 
 
 $conf->setErrorCb(function ($kafka, $err, $reason) {
@@ -56,7 +47,7 @@ $producer = new RdKafka\Producer($conf);
 $topic = $producer->newTopic($topicName);
 
 for ($i = 0; $i < 10; $i++) {
-    $topic->produce(RD_KAFKA_PARTITION_UA, 0, "06-09-2024 - usrDev1 - message ".(50+$i+1)." from 10");
+    $topic->produce(RD_KAFKA_PARTITION_UA, 0, "message ".($i+1)." from 10");
     $producer->poll(0);
 }
 
