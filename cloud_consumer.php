@@ -20,9 +20,26 @@ $conf->set('sasl.password', $_ENV["CLOUD_KAFKA_SASL_PASSWORD"]);
 
 // Consume from the earliest available offset if no committed offset exists
 $conf->set('auto.offset.reset', 'earliest'); 
+$conf->set('compression.codec', 'snappy');
 
 // Topic name
 $topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
+
+// //Kafka Config
+// $conf = new RdKafka\Conf();
+// $conf->set('bootstrap.servers', 'pkc-12576z.us-west2.gcp.confluent.cloud:9092');
+// $conf->set('group.id', 'group_test');
+
+// $conf->set('security.protocol', 'SASL_SSL');
+// $conf->set('sasl.mechanisms', 'PLAIN');
+// $conf->set('sasl.username', 'CSVWASXBTW5YWGSV');
+// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti6m');
+
+// // Consume from the earliest available offset if no committed offset exists
+// $conf->set('auto.offset.reset', 'latest'); 
+
+// // Topic name
+// $topicName = 'datagen_topic_user';
 
 // Set a rebalance callback to log partition assignments (optional)
 $conf->setRebalanceCb(function (RdKafka\KafkaConsumer $kafka, $err, array $partitions = null) {

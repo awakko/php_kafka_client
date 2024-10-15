@@ -7,6 +7,8 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+
+
 $conf = new RdKafka\Conf();
 
 // Set SSL Config
@@ -19,12 +21,30 @@ $conf->set('sasl.password', $_ENV["CLOUD_KAFKA_SASL_PASSWORD"]);
 // Topic name
 $topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 
+// $conf->set('bootstrap.servers', 'pkc-12576z.us-west2.gcp.confluent.cloud:9092');
+// $conf->set('security.protocol', 'SASL_SSL');
+// $conf->set('sasl.mechanisms', 'PLAIN');
+// $conf->set('sasl.username', 'CSVWASXBTW5YWGSV');
+// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti6m');
+
+// // Topic name
+// $topicName = 'datagen_topic_user';
+
+// // Message to be sent
+// $message = [
+//     'driver_id' => 1,
+//     'driver_name' => 'Jony',
+//     'latitude' => '-6.200000',
+//     'longitude' => '106.816666',
+// ];
+
 // Message to be sent
 $message = [
-    'driver_id' => 1,
-    'driver_name' => 'Jony',
-    'latitude' => '-6.200000',
-    'longitude' => '106.816666',
+    "userid"=> "User_3",
+    "name"=> "Johnny",
+    "email"=> "johnny@test.com",
+    "regionid"=> "Region_6",
+    "gender"=> "FEMALE"
 ];
 
 // Convert the array into a JSON string

@@ -13,6 +13,7 @@ $groupId = $_ENV["KAFKA_GROUP"];
 $conf = new RdKafka\Conf();
 $conf->set('bootstrap.servers', $_ENV["KAFKA_BROKER"]);
 $conf->set('group.id', $_ENV["KAFKA_GROUP"]);
+$conf->set('compression.codec', 'none');
 //Set SSL Config
 $conf->set('security.protocol', 'SASL_SSL');
 $conf->set('ssl.ca.location', $_ENV["KAFKA_SSL_CA"]);
