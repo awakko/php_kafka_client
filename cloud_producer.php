@@ -24,8 +24,8 @@ $topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 // $conf->set('bootstrap.servers', 'pkc-12576z.us-west2.gcp.confluent.cloud:9092');
 // $conf->set('security.protocol', 'SASL_SSL');
 // $conf->set('sasl.mechanisms', 'PLAIN');
-// $conf->set('sasl.username', 'CSVWASXBTW5YWGSV');
-// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti6m');
+// $conf->set('sasl.username', 'CSVWASXBTW5YWG**');
+// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti**');
 
 // // Topic name
 // $topicName = 'datagen_topic_user';

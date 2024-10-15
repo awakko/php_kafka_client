@@ -32,8 +32,8 @@ $topicName = $_ENV["CLOUD_KAFKA_TOPIC"];
 
 // $conf->set('security.protocol', 'SASL_SSL');
 // $conf->set('sasl.mechanisms', 'PLAIN');
-// $conf->set('sasl.username', 'CSVWASXBTW5YWGSV');
-// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti6m');
+// $conf->set('sasl.username', 'CSVWASXBTW5YWG**');
+// $conf->set('sasl.password', '/FnLK7DrcI1RrcGRqhlsb+xuMmmra/Aq+PZzp+TYhIqCtDT/MJUmCFY13Xkrti**');
 
 // // Consume from the earliest available offset if no committed offset exists
 // $conf->set('auto.offset.reset', 'latest'); 
